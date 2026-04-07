@@ -518,6 +518,34 @@ On mobile (`col-md-6`), each field takes full width. On medium screens and up, t
 | `py-5` | Padding top and bottom for the section |
 | `gap-2` | Gap between inline buttons |
 
+### Utility / Layout Classes Used in This Form
+
+These Bootstrap utility classes aren't form-specific, but we use them to lay out and style elements around our contact form.
+
+| Class | Applied To | Purpose |
+|-------|-----------|---------|
+| `d-flex` | Wrapper `<div>` | Enables CSS flexbox layout on the container |
+| `justify-content-center` | Flex/grid container | Centers children horizontally |
+| `link-primary` | `<a>` | Styles a hyperlink with the Bootstrap primary (blue) color |
+
+```html
+<!-- Flexbox row of buttons -->
+<div class="d-flex gap-2">
+  <button class="btn btn-primary">Submit</button>
+  <button class="btn btn-outline-secondary">Reset</button>
+</div>
+
+<!-- Centering a column inside a row -->
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <!-- form content centered on the page -->
+  </div>
+</div>
+
+<!-- Styled link -->
+<a href="#" class="link-primary">terms and conditions</a>
+```
+
 ---
 
 ## 🔨 Let's Build — Step by Step
@@ -748,6 +776,8 @@ We use `action="#contact"` so the page scrolls back to the contact section on su
 </div>
 ```
 
+> 📌 **First Time Seeing `link-primary`?** It applies the Bootstrap primary (blue) color to a plain `<a>` hyperlink. There are also `link-secondary`, `link-success`, `link-danger`, etc. — one for each Bootstrap theme color.
+
 ### Step 12: Submit + Reset Buttons
 
 ```html
@@ -762,11 +792,15 @@ We use `action="#contact"` so the page scrolls back to the contact section on su
 </div>
 ```
 
+> 📌 **First Time Seeing `d-flex`?** It turns any element into a **flexbox container**, letting you arrange its children in a row (default) or column. Combined with `gap-2`, it spaces the buttons evenly without extra margin classes.
+
 ---
 
 ## ✅ Complete Contact Section — Full Code
 
-Copy this entire block into your `index.html` after the Gallery section:
+Copy this entire block into your `index.html` after the Gallery section.
+
+> 📌 **First Time Seeing `justify-content-center`?** Inside a `row`, it centers the columns horizontally. Here we use it with `col-lg-8` so the form takes 8 of 12 columns and sits in the middle of the page — not stretched edge to edge.
 
 ```html
 <!-- ===== CONTACT SECTION ===== -->
@@ -1014,6 +1048,12 @@ Open your `index.html` in the browser and check:
 | `<button>` | Clickable button | No |
 | `<fieldset>` | Groups related fields | No |
 | `<legend>` | Title for a fieldset | No |
+| `<div>` | Generic block container (from Session 1) | No |
+| `<section>` | Semantic page section (from Session 2) | No |
+| `<h2>` | Second-level heading (from Session 2) | No |
+| `<p>` | Paragraph of text (from Session 2) | No |
+| `<span>` | Generic inline container (from Session 1) | No |
+| `<a>` | Hyperlink / anchor (from Session 1) | No |
 
 ### Input Types
 
@@ -1030,6 +1070,8 @@ Open your `index.html` in the browser and check:
 | `submit` | Submit button | Triggers form submission |
 | `reset` | Reset button | Clears all fields |
 | `hidden` | Invisible data | Stores server tokens |
+| `file` | File upload picker | Opens file browser dialog |
+| `range` | Slider control | Drag handle between min/max |
 
 ### Key Attributes
 
@@ -1052,6 +1094,11 @@ Open your `index.html` in the browser and check:
 | `for` | Links label to input's id | `for="email"` |
 | `action` | Where form data is sent | `action="submit.php"` |
 | `method` | How data is sent (GET/POST) | `method="POST"` |
+| `class` | Assigns CSS/Bootstrap classes (from Session 1) | `class="btn"` |
+| `href` | Link destination URL (from Session 1) | `href="#contact"` |
+| `style` | Inline CSS styles | `style="height: 120px"` |
+| `accept` | Restricts file types for upload | `accept=".pdf,.jpg"` |
+| `step` | Increment for range/number inputs | `step="1"` |
 
 ### Bootstrap Form Classes
 
@@ -1070,6 +1117,31 @@ Open your `index.html` in the browser and check:
 | `form-control-sm` | input | Smaller size |
 | `input-group` | wrapper div | Input with addon |
 | `input-group-text` | span | Addon text/icon |
+| `col-form-label` | label (horizontal layout) | Aligns label with input |
+| `form-range` | range input | Styles the slider |
+
+### Bootstrap Layout, Utility & Button Classes
+
+| Class | Applied To | Purpose |
+|-------|-----------|---------|
+| `d-flex` | wrapper div | Enables flexbox layout |
+| `gap-2` | flex container | Adds gap between flex children |
+| `justify-content-center` | row / flex container | Centers children horizontally |
+| `link-primary` | `<a>` | Applies primary (blue) colour to a link |
+| `container` | wrapper div | Fixed-width centered container (from Session 1) |
+| `row` | wrapper div | Creates a grid row (from Session 3) |
+| `col-md-6` | column div | 50% width on medium screens (from Session 3) |
+| `col-lg-8` | column div | 66% width on large screens (from Session 3) |
+| `col-sm-3` | column div | 25% width on small screens (from Session 3) |
+| `col-sm-9` | column div | 75% width on small screens (from Session 3) |
+| `py-5` | section / div | Vertical padding (from Session 2) |
+| `mb-2` | any element | Margin-bottom small (from Session 3) |
+| `bg-light` | section / div | Light grey background (from Session 3) |
+| `text-center` | any element | Centers text horizontally (from Session 3) |
+| `text-muted` | any element | Grey muted text colour (from Session 3) |
+| `btn` | button / a | Base button styling (from Session 2) |
+| `btn-primary` | button / a | Solid blue button (from Session 2) |
+| `btn-outline-secondary` | button / a | Outlined grey button (from Session 5) |
 
 ---
 
@@ -1149,6 +1221,8 @@ Create a form where labels are on the **left** and inputs are on the **right** (
 </div>
 ```
 
+> 📌 **First Time Seeing `col-form-label`?** In a horizontal form layout, `col-form-label` vertically aligns the label text with the adjacent input. Without it, the label would sit at the top of its column instead of lining up with the input's centre.
+
 ### Challenge 3: Range Slider — "Rate Us" (1-5)
 
 Add a rating slider using `<input type="range">`.
@@ -1169,6 +1243,8 @@ Add a rating slider using `<input type="range">`.
 ```
 
 > **Bonus:** In Session 9, we'll add JavaScript to update the "3 / 5" text as the slider moves!
+
+> 📌 **First Time Seeing `form-range`?** It styles the native HTML range slider to match Bootstrap's look and feel — wider track, themed thumb colour, and full-width by default.
 
 ---
 
