@@ -48,6 +48,15 @@ New Section: (nothing)                 →  Admin Messages (login-only)
 | 5 | `window.onload` | Code that runs when the page finishes loading | The school bell that rings at 8 AM — everything starts after it |
 | 6 | Bootstrap Modal (JS control) | Opening/closing modals from JavaScript | A security gate that opens when you swipe your card |
 | 7 | Client-side session | Tracking who's logged in using localStorage | Your university ID card — proves you're a student as long as you carry it |
+| 8 | `d-flex` + Flex utilities | Flexbox layout — `justify-content-*`, `align-items-*` arrange child elements in a row | Arranging items on a shelf — spread out, centered, or pushed to edges |
+| 9 | `list-group` + `list-group-item` | Bootstrap component for displaying stacked messages/items | A stack of letters in a mail tray — one on top of the other |
+| 10 | `nav` + `nav-tabs` + `tab-content` + `tab-pane` | Tab navigation — switchable panels inside the same container | Tabbed dividers in a notebook — flip to the section you need |
+| 11 | `fade` / `show` | Bootstrap transition helpers — smooth appear/disappear animations | A dimmer switch — gradual on/off instead of a sudden flick |
+| 12 | `modal-dialog-centered` | Centers a Bootstrap modal vertically on screen | Hanging a photo frame exactly in the center of a wall |
+| 13 | `form-label` | Bootstrap-styled label for form inputs | The printed label next to each field on a paper form |
+| 14 | `bg-primary` / `text-white` / `btn-close-white` | Background colour, text colour, and white close-button utilities | A blue sign with white lettering and a white ✕ close button |
+| 15 | `alert-danger` / `alert-success` | Red (error) and green (success) feedback messages | Red ❌ and green ✅ traffic signals telling you stop or go |
+| 16 | `btn-outline-danger` | Red outline button for destructive actions like "Delete" | A red "DANGER" warning button — clearly warns before acting |
 
 ---
 
@@ -296,6 +305,10 @@ Find the navbar in your `index.html`. We'll add a Login button and a hidden "Wel
 
 > 💡 **What's happening:** `ms-auto` pushes the login button to the far right. `data-bs-toggle="modal"` tells Bootstrap to open a modal when clicked. We have TWO elements — `loginBtn` (visible by default) and `userInfo` (hidden by default). JavaScript will toggle between them.
 
+> 📌 **First Time Seeing `d-flex` and `align-items-center`?** `d-flex` turns a `<div>` into a **flexbox container** — its children line up in a horizontal row instead of stacking vertically. `align-items-center` vertically centres those children. Together, `d-flex align-items-center` means "put these things side by side and vertically align them in the middle." Think of a bookshelf where all the books are centred at the same height.
+
+> 📌 **First Time Seeing `text-white`?** It sets the text colour to white — useful on dark or coloured backgrounds. Here it styles the "Welcome, Name!" text so it's readable against the dark navbar.
+
 ---
 
 ### Step 2: Add the Login Modal
@@ -364,6 +377,18 @@ Add this **before the closing `</body>` tag** (but before your `<script>` tags).
 
 > 📌 **Bootstrap Tabs inside a Modal?** Yes! You can nest Bootstrap components. The `nav-tabs` + `tab-content` pattern creates two switchable panels inside one modal. The `data-bs-toggle="tab"` attribute handles the switching automatically — no JavaScript needed for that part.
 
+> 📌 **First Time Seeing `modal-dialog-centered`?** In Session 7 we used `modal-dialog` to create a modal. Adding `modal-dialog-centered` vertically centres it on screen instead of sitting near the top — like hanging a picture frame in the exact middle of a wall.
+
+> 📌 **First Time Seeing `nav`, `nav-tabs`, `tab-content`, `tab-pane`, `fade`, and `show`?** These work together to create tabbed panels. `nav` is the base navigation class; `nav-tabs` styles it with underlined tabs. Each tab points (via `data-bs-target`) to a `tab-pane` inside a `tab-content` wrapper. `fade` adds a smooth opacity transition and `show` makes the active pane visible. The pane with both `show active` is displayed on load.
+
+> 📌 **First Time Seeing `form-label`?** It adds Bootstrap typography and spacing to a `<label>` element — consistent font size, weight, and margin above the input field. Think of the neatly printed label next to each field on a paper form.
+
+> 📌 **First Time Seeing `bg-primary` and `btn-close-white`?** `bg-primary` sets the background to Bootstrap's primary blue. `btn-close-white` turns the default dark ✕ close button white so it's visible on the blue header. `text-white` (on the same element) makes the heading text white too — a blue sign with white lettering.
+
+> 📌 **First Time Seeing `alert-danger` and `alert-success`?** In Session 6 we met `alert alert-info` (blue). `alert-danger` is a red variant for errors ("Invalid email!") and `alert-success` is green for happy messages ("Account created!"). Same component, different colours — like traffic lights.
+
+> 📌 **First Time Seeing `w-100`?** It sets the element's width to 100 % of its parent. Here it makes the Login and Register buttons stretch to the full width of the modal body. (Introduced in Session 2.)
+
 ---
 
 ### Step 3: Add the "Admin Messages" Section
@@ -392,6 +417,12 @@ Add this **after your Contact section** in the HTML. It's hidden by default and 
     </div>
 </section>
 ```
+
+> 📌 **First Time Seeing `list-group`?** `list-group` is a Bootstrap component that renders a vertical list of items — perfect for displaying messages, notifications, or task lists. Each child gets the `list-group-item` class. Think of a stack of cards pinned to a notice board.
+
+> 📌 **First Time Seeing `justify-content-center`?** Like its sibling `justify-content-between`, it's a flexbox utility. `justify-content-center` centres child elements horizontally inside a flex or grid container. Here it centres the `col-lg-8` column within the row.
+
+> 📌 **First Time Seeing `btn-outline-danger`?** It's a red-outlined variant of Bootstrap's button — similar to `btn-outline-primary` (Session 4) and `btn-outline-secondary` (Session 5), but coloured red to signal a destructive action like "Clear All Messages."
 
 ---
 
@@ -727,6 +758,10 @@ function displayMessages() {
 
 > 📌 **Template Literals Shine Here!** Look at that `card` variable — we're building a full Bootstrap `list-group-item` with embedded data using `${}`. Imagine doing this with `+` concatenation — it would be a nightmare of quotes and plus signs! This is exactly why template literals were invented.
 
+> 📌 **First Time Seeing `list-group-item-action`?** Adding this class to a `list-group-item` makes it hoverable and clickable — the background subtly changes on hover, like a selectable card rather than a static display card.
+
+> 📌 **First Time Seeing `justify-content-between` and `align-items-start`?** Both are flexbox utilities (used with `d-flex`). `justify-content-between` pushes the first child to the left and the last child to the right with space between — like pushing two books to opposite ends of a shelf. `align-items-start` aligns children to the top of the flex container instead of centring them.
+
 ---
 
 #### 4g. Clear All Messages
@@ -840,6 +875,118 @@ Press **F12** → **Application** tab (Chrome) or **Storage** tab (Firefox) → 
 | | `list-group`, `list-group-item` | Message cards |
 | | `d-none` | Hide elements |
 | | `alert-danger`, `alert-success` | Feedback messages |
+
+### Bootstrap Classes
+
+| Class | Type | What It Does |
+|-------|------|-------------|
+| `d-flex` | Layout — NEW | Turns element into a flexbox container; children line up in a row |
+| `justify-content-between` | Flex utility — NEW | Pushes first child left and last child right with space between |
+| `justify-content-center` | Flex utility — NEW | Centres children horizontally inside the flex container |
+| `align-items-center` | Flex utility — NEW | Vertically centres children inside the flex container |
+| `align-items-start` | Flex utility — NEW | Aligns children to the top of the flex container |
+| `list-group` | Component — NEW | Vertical list wrapper for stacked items (messages, tasks) |
+| `list-group-item` | Component — NEW | Individual item inside a `list-group` |
+| `list-group-item-action` | Component — NEW | Makes a `list-group-item` hoverable/clickable |
+| `nav` | Component — NEW | Base navigation class; parent for `nav-tabs`, `nav-pills` |
+| `nav-tabs` | Component — NEW | Styles `nav` as underlined tab buttons |
+| `tab-content` | Component — NEW | Wrapper for all `tab-pane` panels |
+| `tab-pane` | Component — NEW | Individual switchable panel inside `tab-content` |
+| `fade` | Utility — NEW | Adds CSS opacity transition for smooth appear/disappear |
+| `show` | Utility — NEW | Makes a `fade` element visible (opacity 1); paired with `active` on tabs |
+| `modal-dialog-centered` | Component — NEW | Vertically centres a Bootstrap modal on screen |
+| `form-label` | Form — NEW | Adds Bootstrap typography and spacing to a `<label>` |
+| `bg-primary` | Colour — NEW | Sets background to Bootstrap's primary blue (`#0d6efd`) |
+| `text-white` | Colour — NEW | Sets text colour to white |
+| `btn-close-white` | Component — NEW | White variant of the ✕ close button (for dark backgrounds) |
+| `alert-danger` | Component — NEW | Red alert variant for error messages |
+| `alert-success` | Component — NEW | Green alert variant for success messages |
+| `btn-outline-danger` | Component — NEW | Red outline button for destructive actions |
+| `w-100` | Sizing (from Session 2) | Sets width to 100 % of parent |
+| `ms-auto` | Spacing (from Session 1) | Auto left margin — pushes element to the far right |
+| `ms-2` | Spacing (from Session 1 pattern) | Adds `0.5rem` left margin (margin-start size 2) |
+| `mb-1` | Spacing (from Session 3 pattern) | Adds `0.25rem` bottom margin (size 1) |
+| `mb-2` | Spacing (from Session 3) | Adds `0.5rem` bottom margin |
+| `mb-3` | Spacing (from Session 5) | Adds `1rem` bottom margin |
+| `mb-4` | Spacing (from Session 3) | Adds `1.5rem` bottom margin |
+| `mt-3` | Spacing (from Session 2 pattern) | Adds `1rem` top margin (size 3) |
+| `py-4` | Spacing (from Session 2 pattern) | Adds `1.5rem` vertical padding (size 4) |
+| `py-5` | Spacing (from Session 2) | Adds `3rem` vertical padding |
+| `fs-4` | Typography (from Session 3 pattern) | Sets font size to `1.5rem` (size 4) |
+| `rounded` | Border (from Session 3 pattern) | Adds `0.375rem` border-radius (rounded corners) |
+| `btn` | Component (from Session 2) | Base Bootstrap button styling |
+| `btn-primary` | Component (from Session 2) | Blue filled button |
+| `btn-success` | Component (from Session 4) | Green filled button |
+| `btn-outline-light` | Component (from Session 2) | Light-coloured outline button |
+| `btn-sm` | Component (from Session 5) | Small-sized button variant |
+| `btn-close` | Component (from Session 7) | Bootstrap's ✕ close button (used in modal header) |
+| `modal` | Component (from Session 7) | Modal wrapper |
+| `modal-dialog` | Component (from Session 7) | Positions and sizes the modal |
+| `modal-content` | Component (from Session 7) | Provides the modal's background, border, and padding |
+| `modal-header` | Component (from Session 7) | Top section of the modal |
+| `modal-body` | Component (from Session 7) | Main content area of the modal |
+| `modal-title` | Component (from Session 7) | Title text inside `modal-header` |
+| `nav-item` | Component (from Session 1) | Individual item in a nav list |
+| `nav-link` | Component (from Session 1) | Link styling inside `nav-item` |
+| `active` | State (from Session 1) | Highlights the currently selected nav/tab item |
+| `d-none` | Display (from Session 5) | Hides element completely (`display: none`) |
+| `form-control` | Form (from Session 5) | Styles `<input>`, `<select>`, `<textarea>` with Bootstrap form look |
+| `alert` | Component (from Session 6) | Base alert component (coloured banner) |
+| `container` | Layout (from Session 1) | Responsive fixed-width centred container |
+| `row` | Layout (from Session 3) | Flex row for the Bootstrap grid system |
+| `col-lg-8` | Layout (from Session 3) | Column spanning 8 of 12 grid units on large screens |
+| `text-center` | Typography (from Session 3) | Centres text horizontally |
+| `text-muted` | Typography (from Session 3) | Sets text to a muted grey colour |
+| `bg-light` | Colour (from Session 3) | Sets background to light grey |
+| `shadow-sm` | Effect (from Session 3) | Adds a subtle drop shadow |
+| `card` | Component (from Session 3) | Bootstrap card container (used in template literal) |
+
+### HTML Tags Used in Code Blocks
+
+| Tag | Type | What It Does |
+|-----|------|-------------|
+| `<div>` | Container (from Session 1) | Generic block-level container — the most common HTML element |
+| `<section>` | Semantic (from Session 3) | Groups related content with meaning — like "Admin Messages" |
+| `<span>` | Inline container (from Session 1) | Generic inline wrapper — used here for the user-info text |
+| `<h2>` | Heading (from Session 1) | Second-level heading |
+| `<h5>` | Heading (from Session 3) | Fifth-level heading (used in modal title) |
+| `<h6>` | Heading — NEW | Sixth-level heading — smallest heading, used in message cards |
+| `<p>` | Text (from Session 1) | Paragraph of text |
+| `<small>` | Text — NEW | Renders text in a smaller font — used for secondary info like email and date |
+| `<strong>` | Text — NEW | Renders text in **bold** — indicates strong importance |
+| `<a>` | Link (from Session 1) | Anchor/hyperlink — used here for the Logout link |
+| `<button>` | Form (from Session 2) | Clickable button element |
+| `<input>` | Form (from Session 5) | User input field (text, email, password) |
+| `<label>` | Form (from Session 8) | Associates descriptive text with a form input via `for` attribute |
+| `<ul>` | List (from Session 1) | Unordered list — used here for tab navigation |
+| `<li>` | List (from Session 1) | List item inside `<ul>` |
+
+### HTML Attributes Used in Code Blocks
+
+| Attribute | Used On | What It Does |
+|-----------|---------|-------------|
+| `class` | All elements (from Session 1) | Assigns CSS/Bootstrap classes to an element |
+| `id` | All elements (from Session 1) | Gives an element a unique identifier for JS/CSS targeting |
+| `type` | `<button>`, `<input>` (from Session 2) | Specifies the element's type — `button`, `text`, `email`, `password` |
+| `style` | Various (from Session 1) | Applies inline CSS — used here for `display: none` |
+| `href` | `<a>` (from Session 1) | Specifies the link destination — `href="#"` prevents page navigation |
+| `for` | `<label>` (from Session 8) | Links a label to an input by matching the input's `id` |
+| `placeholder` | `<input>` (from Session 5) | Shows greyed-out hint text inside an empty input field |
+| `onclick` | `<button>`, `<a>` (from Session 4) | Runs a JS function when the element is clicked |
+| `data-bs-toggle` | `<button>` (from Session 1) | Tells Bootstrap what to toggle — values: `"modal"`, `"tab"`, `"dropdown"` |
+| `data-bs-target` | `<button>` (from Session 7) | CSS selector of the element to toggle — e.g., `"#loginModal"`, `"#loginForm"` |
+| `data-bs-dismiss` | `<button>` (from Session 7) | Closes the parent component — value `"modal"` closes the modal |
+| `tabindex` | `<div>` (from Session 7) | Controls keyboard tab order — `"-1"` means focusable by JS only |
+| `aria-labelledby` | `<div>` (from Session 7) | Points to the `id` of the element that labels this one (accessibility) |
+| `aria-hidden` | `<div>` (from Session 7) | Hides element from screen readers when `"true"` |
+| `aria-label` | `<button>` — NEW | Provides an accessible name for screen readers — e.g., `"Close"` |
+| `role` | `<ul>`, `<li>`, `<button>`, `<div>` — NEW | Declares ARIA role for accessibility — values: `"tablist"`, `"presentation"`, `"tab"`, `"tabpanel"` |
+
+### CSS Properties Used in Code Blocks
+
+| Property | Value Used | What It Does |
+|----------|-----------|-------------|
+| `display` | `none` | Completely hides the element — used inline (`style="display: none;"`) to hide `#userInfo` and `#adminMessages` until login. Bootstrap's `d-none` class does the same thing. |
 
 ---
 
