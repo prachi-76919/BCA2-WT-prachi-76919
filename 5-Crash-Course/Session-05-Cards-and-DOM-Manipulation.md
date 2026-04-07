@@ -57,6 +57,10 @@ These are the new HTML elements and attributes you'll learn today. Watch for �
 | `data-*` attributes | Custom data stored on an HTML element | Your own private notes written on the back of an element |
 | `style` attribute | Inline CSS applied directly to one element | A sticky note with styling instructions attached to one element |
 | `onclick` attribute | Runs JavaScript when the element is clicked | A doorbell — press it, and something happens inside |
+| `<input>` | Form input field — text box, number field, checkbox, etc. | 📝 A blank line on a paper form, waiting to be filled in (Challenge 3) |
+| `type` attribute | Specifies the kind of `<input>`: `text`, `number`, `checkbox` | Decides what kind of field the browser draws (Challenge 3) |
+| `placeholder` attribute | Grey hint text shown inside an empty input field | Ghost text that vanishes when you start typing (Challenge 3) |
+| `onkeyup` attribute | Runs JavaScript every time a key is released | A motion sensor — fires after every keystroke (Challenge 3) |
 
 ---
 
@@ -672,6 +676,20 @@ Before moving on, verify that everything works:
 | `fw-bold` | Bold font weight |
 | `btn-outline-primary`, `btn-outline-secondary`, `btn-sm` | Outlined and small buttons |
 | `bg-light` | Light grey background |
+| `row`, `col` | Grid row container and column wrapper (from Session 3) |
+| `container` | Centered, responsive page wrapper with max-width (from Session 1) |
+| `text-center` | Center-aligned text (from Session 3) |
+| `btn` | Base button styling — required with all `btn-*` variants (from Session 4) |
+| `border-start`, `border-primary`, `border-4` | Left-side-only border; border color; thick 4px border width (Challenge 2) |
+| `form-control`, `mb-3` | Full-width styled text input; margin-bottom 1rem (Challenge 3) |
+
+### HTML Tags & Attributes from Previous Sessions
+
+| Tag / Attribute | What It Does |
+|----------------|-------------|
+| `<img>` with `src`, `alt` | Image element — `src` is the URL, `alt` is descriptive text for accessibility (from Session 2) |
+| `<strong>` | Bold text with semantic emphasis — "this word is important" (from previous sessions) |
+| `<button>` with `onclick` | Clickable button element that runs JavaScript on click (from Session 4) |
 
 ### JavaScript Concepts Used Today
 
@@ -687,6 +705,11 @@ Before moving on, verify that everything works:
 | For loop | `for (var i = 1; i <= n; i++)` | Repeat an action multiple times |
 | Ternary operator | `condition ? valueA : valueB` | Shorthand if/else for values |
 | If/else | `if (cond) { } else { }` | Make decisions in code |
+| Get input value | `.value` | Read text from an `<input>` field (Challenge 3) |
+| Lowercase string | `.toLowerCase()` | Convert to lowercase for case-insensitive matching (Challenge 3) |
+| Search in string | `.indexOf("text")` | Find position in string; returns -1 if not found (Challenge 3) |
+| Navigate to parent | `.parentElement` | Move up one level in the DOM tree (Challenge 3) |
+| Query child elements | `.querySelector(".class")` | Find first child matching a CSS selector (Challenge 3) |
 
 ---
 
@@ -735,6 +758,8 @@ Give each card a colored left border based on designation:
 - **Assistant Professor** → `border-start border-info border-4`
 - **Lab Assistant** → `border-start border-warning border-4`
 
+> 📌 **New Bootstrap utilities in this challenge:** `border-start` adds a border on the **left side only** (like a colored bookmark tab). `border-4` makes it **thick** (4px). `border-primary`, `border-success`, `border-info`, `border-warning` set the **border color** — same color palette as the `bg-*` background classes you already know.
+
 **Example:** Change the card `<div>` from:
 ```html
 <div class="card h-100 shadow-sm">
@@ -747,6 +772,8 @@ to:
 ### Challenge 3: Search/Filter Faculty (⭐⭐⭐ Hard)
 
 Add a search input above the cards that filters faculty by name as you type:
+
+> 📌 **New concepts in this challenge:** `<input>` creates a form field where users can type. `type="text"` makes it a text box. `placeholder` shows grey hint text inside the empty field. `form-control` is a Bootstrap class that gives the input full width, rounded corners, and focus highlighting. `onkeyup` fires JavaScript every time the user releases a key — perfect for live search!
 
 ```html
 <input type="text" id="facultySearch" class="form-control mb-3" placeholder="Search faculty by name..." onkeyup="filterFaculty()">
